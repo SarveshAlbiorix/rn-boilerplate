@@ -8,10 +8,15 @@ jobs:
   check-branch-name:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '17'
       - name: Check branch name
         run: |
           BRANCH_NAME="${{ github.head_ref }}"
-          if [[ ! "$BRANCH_NAME" =~ ^(feature|hotfix|release)\/[a-z0-9_\-]+$ ]]; then
-            echo "❌ Invalid branch name! Use: feature/{name}, hotfix/{name}, or release/{version}"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|hotfix|release)\/[a-z0-9_\-]+$ && "$BRANCH_NAME" != "main" ]]; then
+            echo "❌ Invalid branch name! Use: feature/{name}, hotfix/{name}, release/{version}, or main"
             exit 1
           fi
