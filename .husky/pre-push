@@ -2,7 +2,7 @@
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 # Allowed branch name formats: feature/*, hotfix/*, release/*
-if [[ ! "$BRANCH_NAME" =~ ^(feature|hotfix|release)\/[a-z0-9_\-]+$ ]]; then
+if [[ ! "$BRANCH_NAME" =~ ^(feature|hotfix|release)\/[a-z0-9_\-]+$ && "$BRANCH_NAME" != "main" ]]; then
   echo "❌ Invalid branch name: '$BRANCH_NAME'"
   echo "🔹 Allowed formats: feature/{name}, hotfix/{name}, release/{version}"
   exit 1
