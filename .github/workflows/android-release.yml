@@ -36,8 +36,8 @@ jobs:
         with:
           artifacts: android/app/build/outputs/apk/release/app-release.apk
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
+          tag: release-${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
           body: Automatically generated release from push to main branch
           draft: false
           prerelease: false
